@@ -85,12 +85,11 @@ public class Damage : MonoBehaviour
     internal virtual void Sweep(int direction) {
         player.DisruptActions();
         player.transitionSpeed = 0.02f;
-        StartCoroutine(SweepFall());
-        /*if (player.Is("gaurding") && player.faceDirection != direction) {
+        if (player.Is("gaurding") && player.faceDirection != direction) {
             StartCoroutine(SweepBlock());
         } else {
             StartCoroutine(SweepFall());
-        }*/
+        }
     }
     /// <summary>
     /// Changes player from Launch state to GroundSlide and LayingFaceUp states

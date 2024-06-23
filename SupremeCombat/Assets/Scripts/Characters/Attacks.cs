@@ -91,7 +91,7 @@ public class Attacks : MonoBehaviour
         foreach (Collider enemy in colliders) {
             if (player.IsEnemy(enemy)) {
                 //Scoot enemy back if too close
-                if (Mathf.Abs(transform.position.x - enemy.transform.position.x) < 0.8) {
+                if (Mathf.Abs(transform.position.x - enemy.transform.position.x) < 0.9) {
                     enemy.transform.position += transform.forward * 0.3f;
                 }
                 enemy.GetComponent<Damage>().Sweep(player.faceDirection);

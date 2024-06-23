@@ -200,7 +200,13 @@ public class Damage : MonoBehaviour
         player.state = Player.States.Gaurd;
     }
     internal virtual IEnumerator SweepBlock() {
-        yield return new WaitForSeconds(0.5f);
+        player.isStunned = true;
+        player.transitionSpeed = 0.15f;
+        player.state = Player.States.SweepBlock;
+        yield return new WaitForSeconds(0.23f);
+        player.isStunned = false;
+        player.transitionSpeed = 2.5f;
+        player.state = Player.States.Gaurd;
     }
     internal virtual IEnumerator Recover() {
         float recoverTime = 0.3f;

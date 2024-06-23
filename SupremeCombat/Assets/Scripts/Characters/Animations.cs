@@ -20,6 +20,9 @@ public class Animations : MonoBehaviour
         if (player.state == Player.States.SweepFall) {
             return Animator.StringToHash("SweepFall");
         }
+        if (player.state == Player.States.SweepBlock) {
+            return Animator.StringToHash("SweepBlock");
+        }
         if (player.state == Player.States.BodyShot) {
             return Animator.StringToHash("BodyShot");
         }

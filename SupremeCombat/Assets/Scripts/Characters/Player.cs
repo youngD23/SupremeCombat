@@ -73,7 +73,8 @@ public class Player : MonoBehaviour
         BodyBlock,
         HeadBlock,
         HeavyBlock, 
-        SweepFall
+        SweepFall,
+        SweepBlock
     }
 
     private void Awake() {
@@ -194,7 +195,8 @@ public class Player : MonoBehaviour
         }
         if (condition == "gaurding") {
             if (state == States.Gaurd || state == States.BodyBlock ||
-                state == States.HeadBlock || state == States.HeavyBlock) {
+                state == States.HeadBlock || state == States.HeavyBlock ||
+                state == States.SweepBlock) {
                 return true;
             }
         }

@@ -63,14 +63,17 @@ public class Animations : MonoBehaviour
             return Animator.StringToHash("FrontGroundRecover");
         }
         /** Attacks **/
+        if (player.state == Player.States.Knee) {
+            return Animator.StringToHash("Knee");
+        }
+        if (player.state == Player.States.RightElbow) {
+            return Animator.StringToHash("RightElbow");
+        }
         if (player.state == Player.States.LegSweep) {
             return Animator.StringToHash("LegSweep");
         }
         if (player.state == Player.States.RightPunch) {
             return Animator.StringToHash("RightPunch");
-        }
-        if (player.state == Player.States.RightElbow) {
-            return Animator.StringToHash("RightElbow");
         }
         if (player.state == Player.States.LeftJab) {
             return Animator.StringToHash("LeftJab");

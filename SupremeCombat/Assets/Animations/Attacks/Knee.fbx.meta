@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 09ea3f4c0eeb284499face3672a413a4
+guid: 7f7b1022c908d7d49a8a1124b751d797
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -33,10 +33,10 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: RightElbow
+      name: Knee
       takeName: mixamo.com
       internalID: -203655887218126122
-      firstFrame: 14
+      firstFrame: 13
       lastFrame: 68
       wrapMode: 0
       orientationOffsetY: 0

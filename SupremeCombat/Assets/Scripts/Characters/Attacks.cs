@@ -1,10 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Net;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Attacks : MonoBehaviour
 {
     internal Player player;
+
+    bool canStringTilt = true; //Prevents tilt combos from continuing indefinitely
 
     private void Awake() {
         player = GetComponent<Player>();
@@ -98,24 +102,91 @@ public class Attacks : MonoBehaviour
             }
         }
     }
+    internal virtual IEnumerator LightUpTilt() {
+        player.state = Player.States.RightElbow;
+        yield return new WaitForSeconds(0.2f);
+        HitCheck("head", "body");
+        yield return new WaitForSeconds(0.2f);
+        if (player.downValue > 0 && canStringTilt) {
+            canStringTilt = false;
+            player.transitionSpeed = 0.05f;
+            StartCoroutine(LightDownTilt());
+            yield break;
+        } else {
+            canStringTilt = true;
+        }
+        if (Mathf.Abs(player.xInput) > 0) {
+            player.state = Player.States.Running;
+        } else {
+            player.state = Player.States.Idle;
+        }
+    }
+    internal virtual IEnumerator LightDownTilt() {
+        player.state = Player.States.Knee;
+        yield return new WaitForSeconds(0.2f);
+        HitCheck("body", "head");
+        yield return new WaitForSeconds(0.2f);
+        if (player.upValue > 0 && canStringTilt) {
+            canStringTilt = false;
+            player.transitionSpeed = 0.05f;
+            StartCoroutine(LightUpTilt());
+            yield break;
+        } else {
+            canStringTilt = true;
+        }
+        if (Mathf.Abs(player.xInput) > 0) {
+            player.state = Player.States.Running;
+        } else {
+            player.state = Player.States.Idle;
+        }
+    }
     internal virtual IEnumerator LightAttack() {
+        yield return new WaitForSeconds(0.05f); //Tilt buffer
         player.transitionSpeed = 0.02f;
+        if (player.upValue > 0) {
+            StartCoroutine(LightUpTilt());
+            yield break;
+        } else if (player.downValue > 0) {
+            StartCoroutine(LightDownTilt());
+            yield break;
+        }
         player.state = Player.States.RightPunch;
         yield return new WaitForSeconds(0.2f);
         HitCheck("body", "head");
         yield return new WaitForSeconds(0.05f);
         if (player.lightValue > 0) {
+            if (player.upValue > 0) {
+                StartCoroutine(LightUpTilt());
+                yield break;
+            } else if (player.downValue > 0) {
+                StartCoroutine(LightDownTilt());
+                yield break;
+            }
             player.state = Player.States.LeftJab;
             yield return new WaitForSeconds(0.2f);
             HitCheck("head", "body");
             yield return new WaitForSeconds(0.05f);
             if (player.lightValue > 0) {
+                if (player.upValue > 0) {
+                    StartCoroutine(LightUpTilt());
+                    yield break;
+                } else if (player.downValue > 0) {
+                    StartCoroutine(LightDownTilt());
+                    yield break;
+                }
                 player.state = Player.States.RightPunch;
                 yield return new WaitForSeconds(0.2f);
                 HitCheck("body", "head");
             }
         }
         yield return new WaitForSeconds(0.2f);
+        if (player.upValue > 0) {
+            StartCoroutine(LightUpTilt());
+            yield break;
+        } else if (player.downValue > 0) {
+            StartCoroutine(LightDownTilt());
+            yield break;
+        }
         if (Mathf.Abs(player.xInput) > 0) {
             player.state = Player.States.Running;
         } else {

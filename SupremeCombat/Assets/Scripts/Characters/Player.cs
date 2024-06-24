@@ -49,12 +49,13 @@ public class Player : MonoBehaviour
         FrontFlipFall,
         //Attack States
         RightPunch,
-        RightElbow,
         LeftJab,
         FaceKick,
         BodyKick,
         Uppercut,
         LegSweep,
+        RightElbow,
+        Knee,
         //Damage States
         BodyShot,
         HeadShot,
@@ -189,6 +190,7 @@ public class Player : MonoBehaviour
         if (condition == "attacking") {
             if (state == States.RightPunch || state == States.LeftJab ||
                 state == States.FaceKick || state == States.LegSweep ||
+                state == States.Knee || state == States.RightElbow ||
                 heavyValue > 0 || lightValue > 0) {
                 return true;
             }

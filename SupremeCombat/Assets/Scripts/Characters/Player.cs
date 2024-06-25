@@ -58,8 +58,9 @@ public class Player : MonoBehaviour
         Knee,
         //Damage States
         BodyShot,
+        BodyShot1,
         HeadShot,
-        LightHeadShot,
+        HeadShot1,
         BackLaunch,
         FrontLaunch,
         BackGroundSlide,
@@ -72,7 +73,9 @@ public class Player : MonoBehaviour
         FrontGroundRecover,
         Gaurd,
         BodyBlock,
+        BodyBlock1,
         HeadBlock,
+        HeadBlock1,
         HeavyBlock, 
         SweepFall,
         SweepBlock
@@ -177,6 +180,8 @@ public class Player : MonoBehaviour
             if (state == States.BackLaunch || state == States.BackGroundSlide ||
                 state == States.FrontLaunch || state == States.FrontGroundSlide ||
                 state == States.LayingFaceUp || state == States.LayingFaceDown || 
+                state == States.BodyShot || state == States.BodyShot1 ||
+                state == States.HeadShot || state == States.HeadShot1 ||
                 state == States.SweepFall) {
                 return true;
             }
@@ -198,6 +203,7 @@ public class Player : MonoBehaviour
         if (condition == "gaurding") {
             if (state == States.Gaurd || state == States.BodyBlock ||
                 state == States.HeadBlock || state == States.HeavyBlock ||
+                state == States.BodyBlock1 || state == States.HeadBlock1 ||
                 state == States.SweepBlock) {
                 return true;
             }

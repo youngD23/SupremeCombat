@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f0987b85983f76b448a94fa9181c5852
+guid: 6f2598647cafdec4b968bfaebe9108c0
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -33,11 +33,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: LightHeadShot
+      name: BodyShot1
       takeName: mixamo.com
       internalID: -203655887218126122
-      firstFrame: 0
-      lastFrame: 37
+      firstFrame: 7
+      lastFrame: 40
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

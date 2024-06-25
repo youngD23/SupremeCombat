@@ -105,7 +105,7 @@ public class Attacks : MonoBehaviour
     internal virtual IEnumerator LightUpTilt() {
         player.state = Player.States.RightElbow;
         yield return new WaitForSeconds(0.2f);
-        HitCheck("head", "body");
+        HitCheck("head1", "body1");
         yield return new WaitForSeconds(0.2f);
         if (player.downValue > 0 && canStringTilt) {
             canStringTilt = false;
@@ -124,7 +124,7 @@ public class Attacks : MonoBehaviour
     internal virtual IEnumerator LightDownTilt() {
         player.state = Player.States.Knee;
         yield return new WaitForSeconds(0.2f);
-        HitCheck("body", "head");
+        HitCheck("body1", "head1");
         yield return new WaitForSeconds(0.2f);
         if (player.upValue > 0 && canStringTilt) {
             canStringTilt = false;

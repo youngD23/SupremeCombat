@@ -45,15 +45,23 @@ public class Damage : MonoBehaviour
     internal virtual void TakeDamage(int direction, string region) {
         player.DisruptActions();
         player.transitionSpeed = 0.02f;
-        if (player.Is("gaurding") && player.faceDirection != direction) { 
+        if (player.Is("gaurding") && player.faceDirection != direction) {
             if (region == "head") {
                 StartCoroutine(HeadBlock());
+            } else if (region == "head1") {
+                StartCoroutine(HeadBlock1());
+            } else if (region == "body1") {
+                StartCoroutine(BodyBlock1());
             } else {
                 StartCoroutine(BodyBlock());
             }
         } else {
             if (region == "head") {
                 StartCoroutine(HeadShot());
+            } else if (region == "head1") {
+                StartCoroutine(HeadShot1());
+            } else if (region == "body1") {
+                StartCoroutine(BodyShot1());
             } else {
                 StartCoroutine(BodyShot());
             }
@@ -163,9 +171,31 @@ public class Damage : MonoBehaviour
             player.state = Player.States.Idle;
         }
     }
+    internal virtual IEnumerator BodyShot1() {
+        player.isStunned = true;
+        if (player.state == Player.States.BodyShot1) {
+            player.state = Player.States.HeadShot1;
+        } else {
+            player.state = Player.States.BodyShot1;
+        }
+        yield return new WaitForSeconds(0.7f);
+        player.isStunned = false;
+        if (Mathf.Abs(player.xInput) > 0) {
+            player.state = Player.States.Running;
+        } else {
+            player.state = Player.States.Idle;
+        }
+    }
     internal virtual IEnumerator HeadShot() {
         player.isStunned = true;
         player.state = Player.States.HeadShot;
+        yield return new WaitForSeconds(0.7f);
+        player.isStunned = false;
+        player.state = Player.States.Idle;
+    }
+    internal virtual IEnumerator HeadShot1() {
+        player.isStunned = true;
+        player.state = Player.States.HeadShot1;
         yield return new WaitForSeconds(0.7f);
         player.isStunned = false;
         player.state = Player.States.Idle;
@@ -185,9 +215,23 @@ public class Damage : MonoBehaviour
         player.isStunned = false;
         player.state = Player.States.Gaurd;
     }
+    internal virtual IEnumerator HeadBlock1() {
+        player.isStunned = true;
+        player.state = Player.States.HeadBlock1;
+        yield return new WaitForSeconds(0.5f);
+        player.isStunned = false;
+        player.state = Player.States.Gaurd;
+    }
     internal virtual IEnumerator BodyBlock() {
         player.isStunned = true;
         player.state = Player.States.BodyBlock;
+        yield return new WaitForSeconds(0.5f);
+        player.isStunned = false;
+        player.state = Player.States.Gaurd;
+    }
+    internal virtual IEnumerator BodyBlock1() {
+        player.isStunned = true;
+        player.state = Player.States.BodyBlock1;
         yield return new WaitForSeconds(0.5f);
         player.isStunned = false;
         player.state = Player.States.Gaurd;

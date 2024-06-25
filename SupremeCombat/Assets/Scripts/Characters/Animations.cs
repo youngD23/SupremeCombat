@@ -26,11 +26,14 @@ public class Animations : MonoBehaviour
         if (player.state == Player.States.BodyShot) {
             return Animator.StringToHash("BodyShot");
         }
+        if (player.state == Player.States.BodyShot1) {
+            return Animator.StringToHash("BodyShot1");
+        }
         if (player.state == Player.States.HeadShot) {
             return Animator.StringToHash("HeavyHeadShot");
         }
-        if (player.state == Player.States.LightHeadShot) {
-            return Animator.StringToHash("LightHeadShot");
+        if (player.state == Player.States.HeadShot1) {
+            return Animator.StringToHash("HeadShot1");
         }
         if (player.state == Player.States.BackLaunch) {
             return Animator.StringToHash("BackLaunch");
@@ -94,8 +97,14 @@ public class Animations : MonoBehaviour
         if (player.state == Player.States.HeadBlock) {
             return Animator.StringToHash("HeadBlock");
         }
+        if (player.state == Player.States.HeadBlock1) {
+            return Animator.StringToHash("HeadBlock1");
+        }
         if (player.state == Player.States.BodyBlock) {
             return Animator.StringToHash("BodyBlock");
+        }
+        if (player.state == Player.States.BodyBlock1) {
+            return Animator.StringToHash("BodyBlock1");
         }
         if (player.state == Player.States.HeavyBlock) {
             return Animator.StringToHash("HeavyBlock");

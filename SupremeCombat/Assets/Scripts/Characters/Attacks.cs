@@ -35,12 +35,20 @@ public class Attacks : MonoBehaviour
     }
     internal virtual void LightCheck() {
         if (player.IsAbleTo("attack")) {
-            StartCoroutine(LightAttack());
+            if (!player.isGrounded) {
+                StartCoroutine(LightAttackAir());
+            } else {
+                StartCoroutine(LightAttackGround());
+            }
         }
     }
     internal virtual void HeavyCheck() {
         if (player.IsAbleTo("attack")) {
-            StartCoroutine(HeavyAttack());
+            if (!player.isGrounded) {
+                StartCoroutine(HeavyAttackAir());
+            } else {
+                StartCoroutine(HeavyAttackGround());
+            }
         }
     }
     internal virtual void HitCheck(string frontRegion, string backRegion) {
@@ -102,7 +110,7 @@ public class Attacks : MonoBehaviour
             }
         }
     }
-    internal virtual IEnumerator LightUpTilt() {
+    internal virtual IEnumerator LightUpTiltGround() {
         player.state = Player.States.RightElbow;
         yield return new WaitForSeconds(0.2f);
         HitCheck("head1", "body1");
@@ -110,7 +118,7 @@ public class Attacks : MonoBehaviour
         if (player.downValue > 0 && canStringTilt) {
             canStringTilt = false;
             player.transitionSpeed = 0.05f;
-            StartCoroutine(LightDownTilt());
+            StartCoroutine(LightDownTiltGround());
             yield break;
         } else {
             canStringTilt = true;
@@ -121,7 +129,26 @@ public class Attacks : MonoBehaviour
             player.state = Player.States.Idle;
         }
     }
-    internal virtual IEnumerator LightDownTilt() {
+    internal virtual IEnumerator LightUpTiltAir() {
+        player.state = Player.States.RightElbow;
+        yield return new WaitForSeconds(0.2f);
+        HitCheck("head1", "body1");
+        yield return new WaitForSeconds(0.2f);
+        if (player.downValue > 0 && canStringTilt) {
+            canStringTilt = false;
+            player.transitionSpeed = 0.05f;
+            StartCoroutine(LightDownTiltGround());
+            yield break;
+        } else {
+            canStringTilt = true;
+        }
+        if (Mathf.Abs(player.xInput) > 0) {
+            player.state = Player.States.Running;
+        } else {
+            player.state = Player.States.Idle;
+        }
+    }
+    internal virtual IEnumerator LightDownTiltGround() {
         player.state = Player.States.Knee;
         yield return new WaitForSeconds(0.2f);
         HitCheck("body1", "head1");
@@ -129,7 +156,7 @@ public class Attacks : MonoBehaviour
         if (player.upValue > 0 && canStringTilt) {
             canStringTilt = false;
             player.transitionSpeed = 0.05f;
-            StartCoroutine(LightUpTilt());
+            StartCoroutine(LightUpTiltGround());
             yield break;
         } else {
             canStringTilt = true;
@@ -140,14 +167,33 @@ public class Attacks : MonoBehaviour
             player.state = Player.States.Idle;
         }
     }
-    internal virtual IEnumerator LightAttack() {
+    internal virtual IEnumerator LightDownTiltAir() {
+        player.state = Player.States.Knee;
+        yield return new WaitForSeconds(0.2f);
+        HitCheck("body1", "head1");
+        yield return new WaitForSeconds(0.2f);
+        if (player.upValue > 0 && canStringTilt) {
+            canStringTilt = false;
+            player.transitionSpeed = 0.05f;
+            StartCoroutine(LightUpTiltGround());
+            yield break;
+        } else {
+            canStringTilt = true;
+        }
+        if (Mathf.Abs(player.xInput) > 0) {
+            player.state = Player.States.Running;
+        } else {
+            player.state = Player.States.Idle;
+        }
+    }
+    internal virtual IEnumerator LightAttackGround() {
         yield return new WaitForSeconds(0.05f); //Tilt buffer
         player.transitionSpeed = 0.02f;
         if (player.upValue > 0) {
-            StartCoroutine(LightUpTilt());
+            StartCoroutine(LightUpTiltGround());
             yield break;
         } else if (player.downValue > 0) {
-            StartCoroutine(LightDownTilt());
+            StartCoroutine(LightDownTiltGround());
             yield break;
         }
         player.state = Player.States.RightPunch;
@@ -156,10 +202,10 @@ public class Attacks : MonoBehaviour
         yield return new WaitForSeconds(0.05f);
         if (player.lightValue > 0) {
             if (player.upValue > 0) {
-                StartCoroutine(LightUpTilt());
+                StartCoroutine(LightUpTiltGround());
                 yield break;
             } else if (player.downValue > 0) {
-                StartCoroutine(LightDownTilt());
+                StartCoroutine(LightDownTiltGround());
                 yield break;
             }
             player.state = Player.States.LeftJab;
@@ -168,10 +214,10 @@ public class Attacks : MonoBehaviour
             yield return new WaitForSeconds(0.05f);
             if (player.lightValue > 0) {
                 if (player.upValue > 0) {
-                    StartCoroutine(LightUpTilt());
+                    StartCoroutine(LightUpTiltGround());
                     yield break;
                 } else if (player.downValue > 0) {
-                    StartCoroutine(LightDownTilt());
+                    StartCoroutine(LightDownTiltGround());
                     yield break;
                 }
                 player.state = Player.States.RightPunch;
@@ -181,10 +227,10 @@ public class Attacks : MonoBehaviour
         }
         yield return new WaitForSeconds(0.2f);
         if (player.upValue > 0) {
-            StartCoroutine(LightUpTilt());
+            StartCoroutine(LightUpTiltGround());
             yield break;
         } else if (player.downValue > 0) {
-            StartCoroutine(LightDownTilt());
+            StartCoroutine(LightDownTiltGround());
             yield break;
         }
         if (Mathf.Abs(player.xInput) > 0) {
@@ -193,7 +239,39 @@ public class Attacks : MonoBehaviour
             player.state = Player.States.Idle;
         }
     }
-    internal virtual IEnumerator HeavyAttack() {
+    internal virtual IEnumerator LightAttackAir() {
+        yield return new WaitForSeconds(0.05f); //Tilt buffer
+        player.transitionSpeed = 0.02f;
+        if (player.upValue > 0) {
+            StartCoroutine(LightUpTiltAir());
+            yield break;
+        } else if (player.downValue > 0) {
+            StartCoroutine(LightDownTiltAir());
+            yield break;
+        }
+        player.state = Player.States.AirPunch;
+        yield return new WaitForSeconds(0.2f);
+        HitCheck("body", "head");
+        yield return new WaitForSeconds(0.1f);
+        if (player.lightValue > 0) {
+            if (player.upValue > 0) {
+                StartCoroutine(LightUpTiltAir());
+                yield break;
+            } else if (player.downValue > 0) {
+                StartCoroutine(LightDownTiltAir());
+                yield break;
+            }
+        }
+        yield return new WaitForSeconds(0.1f);
+        if (!player.isGrounded) {
+            player.state = Player.States.Falling;
+        } else if (Mathf.Abs(player.xInput) > 0) {
+            player.state = Player.States.Running;
+        } else {
+            player.state = Player.States.Idle;
+        }
+    }
+    internal virtual IEnumerator HeavyAttackGround() {
         yield return new WaitForSeconds(0.05f); //tilt buffer
         player.transitionSpeed = 0.02f;
         if (player.upValue > 0) {
@@ -211,6 +289,31 @@ public class Attacks : MonoBehaviour
         }
         yield return new WaitForSeconds(0.7f);
         if (Mathf.Abs(player.xInput) > 0) {
+            player.state = Player.States.Running;
+        } else {
+            player.state = Player.States.Idle;
+        }
+    }
+    internal virtual IEnumerator HeavyAttackAir() {
+        yield return new WaitForSeconds(0.05f); //tilt buffer
+        player.transitionSpeed = 0.02f;
+        if (player.upValue > 0) {
+            player.state = Player.States.Uppercut;
+            yield return new WaitForSeconds(0.3f);
+            LaunchCheck("up");
+        } else if (player.downValue > 0) {
+            player.state = Player.States.LegSweep;
+            yield return new WaitForSeconds(0.4f);
+            SweepCheck();
+        } else {
+            player.state = Player.States.AirDropKick;
+            yield return new WaitForSeconds(0.2f);
+            LaunchCheck("forward");
+        }
+        yield return new WaitForSeconds(0.3f);
+        if (!player.isGrounded) {
+            player.state = Player.States.Falling;
+        } else if (Mathf.Abs(player.xInput) > 0) {
             player.state = Player.States.Running;
         } else {
             player.state = Player.States.Idle;

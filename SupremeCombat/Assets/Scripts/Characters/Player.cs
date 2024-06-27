@@ -56,6 +56,8 @@ public class Player : MonoBehaviour
         LegSweep,
         RightElbow,
         Knee,
+        AirPunch,
+        AirDropKick,
         //Damage States
         BodyShot,
         BodyShot1,
@@ -159,7 +161,7 @@ public class Player : MonoBehaviour
             }
         }
         if (action == "fall") {
-            if (Is("disoriented") || Is("recovering") || Is("falling")) {
+            if (Is("disoriented") || Is("recovering") || Is("falling") || Is("attacking")) {
                 return false;
             }
         }
@@ -196,6 +198,7 @@ public class Player : MonoBehaviour
             if (state == States.RightPunch || state == States.LeftJab ||
                 state == States.FaceKick || state == States.LegSweep ||
                 state == States.Knee || state == States.RightElbow ||
+                state == States.AirPunch || state == States.AirDropKick ||
                 heavyValue > 0 || lightValue > 0) {
                 return true;
             }

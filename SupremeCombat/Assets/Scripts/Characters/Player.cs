@@ -58,6 +58,8 @@ public class Player : MonoBehaviour
         Knee,
         AirPunch,
         AirDropKick,
+        AirDownwardsKick,
+        AirBackFlipKick,
         //Damage States
         BodyShot,
         BodyShot1,
@@ -199,6 +201,7 @@ public class Player : MonoBehaviour
                 state == States.FaceKick || state == States.LegSweep ||
                 state == States.Knee || state == States.RightElbow ||
                 state == States.AirPunch || state == States.AirDropKick ||
+                state == States.AirDownwardsKick || state == States.AirBackFlipKick ||
                 heavyValue > 0 || lightValue > 0) {
                 return true;
             }

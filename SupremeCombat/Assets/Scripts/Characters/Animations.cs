@@ -66,6 +66,12 @@ public class Animations : MonoBehaviour
             return Animator.StringToHash("FrontGroundRecover");
         }
         /** Attacks **/
+        if (player.state == Player.States.AirDownwardsKick) {
+            return Animator.StringToHash("AirDownwardsKick");
+        }
+        if (player.state == Player.States.AirBackFlipKick) {
+            return Animator.StringToHash("AirBackFlipKick");
+        }
         if (player.state == Player.States.AirPunch) {
             return Animator.StringToHash("AirPunch");
         }

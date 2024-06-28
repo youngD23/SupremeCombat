@@ -110,6 +110,9 @@ public class Attacks : MonoBehaviour
             }
         }
     }
+    internal virtual void SlamCheck() {
+
+    }
     internal virtual IEnumerator LightUpTiltGround() {
         player.state = Player.States.RightElbow;
         yield return new WaitForSeconds(0.2f);
@@ -296,15 +299,15 @@ public class Attacks : MonoBehaviour
     }
     internal virtual IEnumerator HeavyAttackAir() {
         yield return new WaitForSeconds(0.05f); //tilt buffer
-        player.transitionSpeed = 0.02f;
+        player.transitionSpeed = 0.05f;
         if (player.upValue > 0) {
-            player.state = Player.States.Uppercut;
-            yield return new WaitForSeconds(0.3f);
+            player.state = Player.States.AirBackFlipKick;
+            yield return new WaitForSeconds(0.15f);
             LaunchCheck("up");
         } else if (player.downValue > 0) {
-            player.state = Player.States.LegSweep;
-            yield return new WaitForSeconds(0.4f);
-            SweepCheck();
+            player.state = Player.States.AirDownwardsKick;
+            yield return new WaitForSeconds(0.3f);
+            SlamCheck();
         } else {
             player.state = Player.States.AirDropKick;
             yield return new WaitForSeconds(0.2f);

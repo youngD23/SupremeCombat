@@ -136,9 +136,54 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             ""id"": ""a8713513-a765-4cc2-b082-bcf0be2af22c"",
             ""actions"": [
                 {
-                    ""name"": ""New action"",
+                    ""name"": ""Up"",
                     ""type"": ""Button"",
-                    ""id"": ""62bcb9ab-c48b-4506-a97f-d33fa42a8c69"",
+                    ""id"": ""a252515a-0e74-4eb7-8c08-4171d77860de"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Down"",
+                    ""type"": ""Button"",
+                    ""id"": ""5ae8456f-da17-4d09-85df-9ad7200cd5b6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Light"",
+                    ""type"": ""Button"",
+                    ""id"": ""a37b682c-cae2-4c9c-baaa-b1ba45f66e97"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Heavy"",
+                    ""type"": ""Button"",
+                    ""id"": ""aca3c370-6a51-48cc-9475-c8145b263541"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Gaurd"",
+                    ""type"": ""Button"",
+                    ""id"": ""1b7584d0-6e9e-4752-9dbf-b1feb3ee2faf"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Jump"",
+                    ""type"": ""Button"",
+                    ""id"": ""8acac5c5-ed7c-4ce8-b2a1-2e3db864789c"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -148,12 +193,67 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""26b85080-3b24-498d-ac09-00a73557f3ac"",
-                    ""path"": """",
+                    ""id"": ""5b00f274-f16c-49dc-ad84-3dbcada9c092"",
+                    ""path"": ""<Gamepad>/leftStick/up"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""New action"",
+                    ""action"": ""Up"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0920af08-45d7-46e7-9b48-ca836563d559"",
+                    ""path"": ""<Gamepad>/leftStick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Down"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c639d7fd-48a5-489c-9e3d-b9eb083fa01e"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Light"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fbea3412-d56b-4689-b55a-dbfde3fd2693"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Heavy"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""057cb1e6-7b18-4c85-941c-15d812cff792"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Gaurd"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""581c1bbf-aefc-4cb3-821e-ff3a84770875"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -199,7 +299,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Keyboard_Gaurd = m_Keyboard.FindAction("Gaurd", throwIfNotFound: true);
         // Gamepad
         m_Gamepad = asset.FindActionMap("Gamepad", throwIfNotFound: true);
-        m_Gamepad_Newaction = m_Gamepad.FindAction("New action", throwIfNotFound: true);
+        m_Gamepad_Up = m_Gamepad.FindAction("Up", throwIfNotFound: true);
+        m_Gamepad_Down = m_Gamepad.FindAction("Down", throwIfNotFound: true);
+        m_Gamepad_Light = m_Gamepad.FindAction("Light", throwIfNotFound: true);
+        m_Gamepad_Heavy = m_Gamepad.FindAction("Heavy", throwIfNotFound: true);
+        m_Gamepad_Gaurd = m_Gamepad.FindAction("Gaurd", throwIfNotFound: true);
+        m_Gamepad_Jump = m_Gamepad.FindAction("Jump", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Pause = m_UI.FindAction("Pause", throwIfNotFound: true);
@@ -342,12 +447,22 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     // Gamepad
     private readonly InputActionMap m_Gamepad;
     private List<IGamepadActions> m_GamepadActionsCallbackInterfaces = new List<IGamepadActions>();
-    private readonly InputAction m_Gamepad_Newaction;
+    private readonly InputAction m_Gamepad_Up;
+    private readonly InputAction m_Gamepad_Down;
+    private readonly InputAction m_Gamepad_Light;
+    private readonly InputAction m_Gamepad_Heavy;
+    private readonly InputAction m_Gamepad_Gaurd;
+    private readonly InputAction m_Gamepad_Jump;
     public struct GamepadActions
     {
         private @PlayerControls m_Wrapper;
         public GamepadActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Newaction => m_Wrapper.m_Gamepad_Newaction;
+        public InputAction @Up => m_Wrapper.m_Gamepad_Up;
+        public InputAction @Down => m_Wrapper.m_Gamepad_Down;
+        public InputAction @Light => m_Wrapper.m_Gamepad_Light;
+        public InputAction @Heavy => m_Wrapper.m_Gamepad_Heavy;
+        public InputAction @Gaurd => m_Wrapper.m_Gamepad_Gaurd;
+        public InputAction @Jump => m_Wrapper.m_Gamepad_Jump;
         public InputActionMap Get() { return m_Wrapper.m_Gamepad; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -357,16 +472,46 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_GamepadActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_GamepadActionsCallbackInterfaces.Add(instance);
-            @Newaction.started += instance.OnNewaction;
-            @Newaction.performed += instance.OnNewaction;
-            @Newaction.canceled += instance.OnNewaction;
+            @Up.started += instance.OnUp;
+            @Up.performed += instance.OnUp;
+            @Up.canceled += instance.OnUp;
+            @Down.started += instance.OnDown;
+            @Down.performed += instance.OnDown;
+            @Down.canceled += instance.OnDown;
+            @Light.started += instance.OnLight;
+            @Light.performed += instance.OnLight;
+            @Light.canceled += instance.OnLight;
+            @Heavy.started += instance.OnHeavy;
+            @Heavy.performed += instance.OnHeavy;
+            @Heavy.canceled += instance.OnHeavy;
+            @Gaurd.started += instance.OnGaurd;
+            @Gaurd.performed += instance.OnGaurd;
+            @Gaurd.canceled += instance.OnGaurd;
+            @Jump.started += instance.OnJump;
+            @Jump.performed += instance.OnJump;
+            @Jump.canceled += instance.OnJump;
         }
 
         private void UnregisterCallbacks(IGamepadActions instance)
         {
-            @Newaction.started -= instance.OnNewaction;
-            @Newaction.performed -= instance.OnNewaction;
-            @Newaction.canceled -= instance.OnNewaction;
+            @Up.started -= instance.OnUp;
+            @Up.performed -= instance.OnUp;
+            @Up.canceled -= instance.OnUp;
+            @Down.started -= instance.OnDown;
+            @Down.performed -= instance.OnDown;
+            @Down.canceled -= instance.OnDown;
+            @Light.started -= instance.OnLight;
+            @Light.performed -= instance.OnLight;
+            @Light.canceled -= instance.OnLight;
+            @Heavy.started -= instance.OnHeavy;
+            @Heavy.performed -= instance.OnHeavy;
+            @Heavy.canceled -= instance.OnHeavy;
+            @Gaurd.started -= instance.OnGaurd;
+            @Gaurd.performed -= instance.OnGaurd;
+            @Gaurd.canceled -= instance.OnGaurd;
+            @Jump.started -= instance.OnJump;
+            @Jump.performed -= instance.OnJump;
+            @Jump.canceled -= instance.OnJump;
         }
 
         public void RemoveCallbacks(IGamepadActions instance)
@@ -440,7 +585,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     }
     public interface IGamepadActions
     {
-        void OnNewaction(InputAction.CallbackContext context);
+        void OnUp(InputAction.CallbackContext context);
+        void OnDown(InputAction.CallbackContext context);
+        void OnLight(InputAction.CallbackContext context);
+        void OnHeavy(InputAction.CallbackContext context);
+        void OnGaurd(InputAction.CallbackContext context);
+        void OnJump(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

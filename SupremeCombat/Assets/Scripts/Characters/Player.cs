@@ -28,7 +28,7 @@ public class Player : MonoBehaviour
     internal float xMovement;
     internal float transitionSpeed = 0.3f;
     internal float acceleration;
-    internal float lightValue, heavyValue, upValue, downValue, gaurdValue;
+    internal float lightValue, heavyValue, upValue, downValue, jumpValue, gaurdValue;
     internal float stunTimer;
     internal int xInput;
     internal int playerNum;
@@ -245,10 +245,17 @@ public class Player : MonoBehaviour
             lightValue = playerControls.Keyboard.Light.ReadValue<float>();
             heavyValue = playerControls.Keyboard.Heavy.ReadValue<float>();
             upValue = playerControls.Keyboard.Up.ReadValue<float>();
+            jumpValue = playerControls.Keyboard.Up.ReadValue<float>();
             downValue = playerControls.Keyboard.Down.ReadValue<float>();
             gaurdValue = playerControls.Keyboard.Gaurd.ReadValue<float>();
             GetXInput();
         } else if (controlSetting == "gamepad") {
+            lightValue = playerControls.Gamepad.Light.ReadValue<float>();
+            heavyValue = playerControls.Gamepad.Heavy.ReadValue<float>();
+            upValue = playerControls.Gamepad.Up.ReadValue<float>();
+            jumpValue = playerControls.Gamepad.Jump.ReadValue<float>();
+            downValue = playerControls.Gamepad.Down.ReadValue<float>();
+            gaurdValue = playerControls.Gamepad.Gaurd.ReadValue<float>();
             GetXInput();
         }
     }

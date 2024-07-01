@@ -36,6 +36,10 @@ public class Damage : MonoBehaviour
             player.playerControls.Keyboard.Up.performed += ctx => RecoverCheck();
             player.playerControls.Keyboard.Light.performed += ctx => RecoverCheck();
             player.playerControls.Keyboard.Heavy.performed += ctx => RecoverCheck();
+        } else if (player.controlSetting == "gamepad") {
+            player.playerControls.Gamepad.Up.performed += ctx => RecoverCheck();
+            player.playerControls.Gamepad.Light.performed += ctx => RecoverCheck();
+            player.playerControls.Gamepad.Heavy.performed += ctx => RecoverCheck();
         }
     }
     /// <summary>

@@ -46,6 +46,8 @@ public class Movement : MonoBehaviour
     void StartBaseControls() {
         if (player.controlSetting == "keyboard") {
             player.playerControls.Keyboard.Up.performed += ctx => JumpCheck();
+        } else if (player.controlSetting == "gamepad") {
+            player.playerControls.Gamepad.Jump.performed += ctx => JumpCheck();
         }
     }
     internal virtual void HorizontalMovement() {
@@ -106,7 +108,7 @@ public class Movement : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         if (player.isGrounded) {
             player.transitionSpeed = 0.5f;
-            if (player.upValue > 0) {
+            if (player.jumpValue > 0) {
                 GetComponent<Rigidbody>().velocity = new Vector2(GetComponent<Rigidbody>().velocity.x, player.highJumpForce);
             } else {
                 GetComponent<Rigidbody>().velocity = new Vector2(GetComponent<Rigidbody>().velocity.x, player.lowJumpForce);

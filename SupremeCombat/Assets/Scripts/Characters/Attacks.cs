@@ -31,6 +31,9 @@ public class Attacks : MonoBehaviour
         if (player.controlSetting == "keyboard") {
             player.playerControls.Keyboard.Light.performed += ctx => LightCheck();
             player.playerControls.Keyboard.Heavy.performed += ctx => HeavyCheck();
+        } else if (player.controlSetting == "gamepad") {
+            player.playerControls.Gamepad.Light.performed += ctx => LightCheck();
+            player.playerControls.Gamepad.Heavy.performed += ctx => HeavyCheck();
         }
     }
     internal virtual void LightCheck() {

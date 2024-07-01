@@ -114,9 +114,54 @@
             "id": "a8713513-a765-4cc2-b082-bcf0be2af22c",
             "actions": [
                 {
-                    "name": "New action",
+                    "name": "Up",
                     "type": "Button",
-                    "id": "62bcb9ab-c48b-4506-a97f-d33fa42a8c69",
+                    "id": "a252515a-0e74-4eb7-8c08-4171d77860de",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Down",
+                    "type": "Button",
+                    "id": "5ae8456f-da17-4d09-85df-9ad7200cd5b6",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Light",
+                    "type": "Button",
+                    "id": "a37b682c-cae2-4c9c-baaa-b1ba45f66e97",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Heavy",
+                    "type": "Button",
+                    "id": "aca3c370-6a51-48cc-9475-c8145b263541",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Gaurd",
+                    "type": "Button",
+                    "id": "1b7584d0-6e9e-4752-9dbf-b1feb3ee2faf",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Jump",
+                    "type": "Button",
+                    "id": "8acac5c5-ed7c-4ce8-b2a1-2e3db864789c",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -126,12 +171,67 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "26b85080-3b24-498d-ac09-00a73557f3ac",
-                    "path": "",
+                    "id": "5b00f274-f16c-49dc-ad84-3dbcada9c092",
+                    "path": "<Gamepad>/leftStick/up",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "New action",
+                    "action": "Up",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0920af08-45d7-46e7-9b48-ca836563d559",
+                    "path": "<Gamepad>/leftStick/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Down",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c639d7fd-48a5-489c-9e3d-b9eb083fa01e",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Light",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fbea3412-d56b-4689-b55a-dbfde3fd2693",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Heavy",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "057cb1e6-7b18-4c85-941c-15d812cff792",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Gaurd",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "581c1bbf-aefc-4cb3-821e-ff3a84770875",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -86,6 +86,14 @@ public class Attacks : MonoBehaviour
                     enemy.GetComponent<Damage>().Launch(player.faceDirection, trajectory);
                 }
             }
+        } else if (trajectory == "down") {
+            attackPoint = transform.position;
+            colliders = Physics.OverlapSphere(attackPoint, player.attackRadius * 0.7f, player.charLayer);
+            foreach (Collider enemy in colliders) {
+                if (player.IsEnemy(enemy)) {
+                    enemy.GetComponent<Damage>().Launch(player.faceDirection, trajectory);
+                }
+            }
         } else {
             attackPoint = transform.position + new Vector3(1f * player.faceDirection, 1.5f, 0);
             colliders = Physics.OverlapSphere(attackPoint, player.attackRadius, player.charLayer);
@@ -112,9 +120,6 @@ public class Attacks : MonoBehaviour
                 enemy.GetComponent<Damage>().Sweep(player.faceDirection);
             }
         }
-    }
-    internal virtual void SlamCheck() {
-
     }
     internal virtual IEnumerator LightUpTiltGround() {
         player.state = Player.States.RightElbow;
@@ -310,7 +315,7 @@ public class Attacks : MonoBehaviour
         } else if (player.downValue > 0) {
             player.state = Player.States.AirDownwardsKick;
             yield return new WaitForSeconds(0.3f);
-            SlamCheck();
+            LaunchCheck("down");
         } else {
             player.state = Player.States.AirDropKick;
             yield return new WaitForSeconds(0.2f);

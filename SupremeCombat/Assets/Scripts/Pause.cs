@@ -32,7 +32,7 @@ public class Pause : MonoBehaviour
         }
     }
     public void EndGame() {
-        SceneController.CharacterScene();
+        SceneSelector.LoadScene("CharacterSelect");
         Time.timeScale = 1;
         paused = false;
         pauseMenuUI.SetActive(false);

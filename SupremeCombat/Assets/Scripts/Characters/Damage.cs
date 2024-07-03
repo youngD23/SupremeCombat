@@ -52,23 +52,32 @@ public class Damage : MonoBehaviour
         if (player.Is("gaurding") && player.faceDirection != direction) {
             if (region == "head") {
                 StartCoroutine(HeadBlock());
+                FindObjectOfType<AudioManager>().Play("Block");
             } else if (region == "head1") {
                 StartCoroutine(HeadBlock1());
+                FindObjectOfType<AudioManager>().Play("Block");
             } else if (region == "body1") {
                 StartCoroutine(BodyBlock1());
+                FindObjectOfType<AudioManager>().Play("Block1");
             } else {
                 StartCoroutine(BodyBlock());
+                FindObjectOfType<AudioManager>().Play("Block1");
             }
         } else {
             if (region == "head") {
                 StartCoroutine(HeadShot());
+                FindObjectOfType<AudioManager>().Play("Hit");
             } else if (region == "head1") {
                 StartCoroutine(HeadShot1());
+                FindObjectOfType<AudioManager>().Play("Hit");
             } else if (region == "body1") {
                 StartCoroutine(BodyShot1());
+                FindObjectOfType<AudioManager>().Play("Hit1");
             } else {
                 StartCoroutine(BodyShot());
+                FindObjectOfType<AudioManager>().Play("Hit1");
             }
+            
         }
     }
     internal virtual void Launch(int direction, string trajectory) {
@@ -76,6 +85,7 @@ public class Damage : MonoBehaviour
         player.transitionSpeed = 0.05f;
         if (player.Is("gaurding") && player.faceDirection != direction) {
             StartCoroutine(HeavyBlock());
+            FindObjectOfType<AudioManager>().Play("HeavyBlock");
         } else {
             groundSlideBuffer = 0.03f;
             if (player.faceDirection == direction) {
@@ -89,9 +99,12 @@ public class Damage : MonoBehaviour
             //Add function based on damage and health for launch force
             if (trajectory == "up") {
                 player.rb.AddForce(new Vector3(direction * 600, 800, 0));
+            } else if (trajectory == "down") {
+                player.rb.AddForce(new Vector3(0, -800, 0));
             } else {
                 player.rb.AddForce(new Vector3(direction * 800, 600, 0));
             }
+            FindObjectOfType<AudioManager>().Play("HeavyHit");
         }
     }
     internal virtual void Sweep(int direction) {
